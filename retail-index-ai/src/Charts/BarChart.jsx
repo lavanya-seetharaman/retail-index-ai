@@ -21,39 +21,39 @@ ChartJS.register(
   Legend
 );
 
-function BarChart() {
-  const [chart, setChart] = useState([]);
-  const [value, setValue] = useState({
-    startDate: dayjs(new Date()),
-    endDate: new Date().setMonth(11),
-  });
+function BarChart({ chart }) {
+  // const [chart, setChart] = useState([]);
+  // const [value, setValue] = useState({
+  //   startDate: dayjs(new Date()),
+  //   endDate: new Date().setMonth(11),
+  // });
 
-  const handleValueChange = (newValue) => {
-    console.log("newValue:", newValue);
-    setValue(newValue);
-  };
+  // const handleValueChange = (newValue) => {
+  //   console.log("newValue:", newValue);
+  //   setValue(newValue);
+  // };
 
-  let data = "";
+  // let data = "";
 
-  const fetchPredict = (e) => {
-    let config = {
-      method: "get",
-      maxBodyLength: Infinity,
-      url: `https://ret1--sankarannamalai.repl.co/predict/?start_date=${value.startDate}&end_date=${value.endDate}`,
-      headers: {},
-      data: data,
-    };
+  // const fetchPredict = (e) => {
+  //   let config = {
+  //     method: "get",
+  //     maxBodyLength: Infinity,
+  //     url: `https://ret1--sankarannamalai.repl.co/predict/?start_date=${value.startDate}&end_date=${value.endDate}`,
+  //     headers: {},
+  //     data: data,
+  //   };
 
-    axios
-      .request(config)
-      .then((response) => {
-        console.log(response.data);
-        setChart(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
+  //   axios
+  //     .request(config)
+  //     .then((response) => {
+  //       console.log(response.data);
+  //       setChart(response.data);
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // };
 
   var chartdata = {
     labels: chart?.predictions?.map((x) => dayjs(x.date).format("DD")),
@@ -94,20 +94,7 @@ function BarChart() {
 
   return (
     <div>
-      <div className="flex flex-row">
-        {" "}
-        <Datepicker
-          showShortcuts={true}
-          showFooter={true}
-          value={value}
-          onChange={handleValueChange}
-        />
-        <button onClick={fetchPredict}>Predict</button>
-      </div>
-
-      <div className="w-[1200px]">
-        <Bar options={options} data={chartdata} />
-      </div>
+      <Bar options={options} data={chartdata} />
     </div>
   );
 }

@@ -2,11 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+  background-image: linear-gradient(to top, #fbc2eb 0%, #a6c1ee 100%);
+}
 #root {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  background-color: lightgray;
 }
 
 .logo {
